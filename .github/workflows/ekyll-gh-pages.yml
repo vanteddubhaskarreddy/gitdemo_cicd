@@ -38,5 +38,5 @@ jobs:
     needs: build
     steps:
       - name: Deploy to Github pages
-      id: deployement
-      uses: actions/deploy-pages@v1
+        id: deployement
+        uses: actions/deploy-pages@v1
