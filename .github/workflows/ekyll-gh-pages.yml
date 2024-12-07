@@ -1,4 +1,4 @@
-name: Workflow for my form
+name: Deploy Jekyll with Github Pages dependecies preinstalled
 on:
   push:
     branches: ["main"]
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Build with Jekyll
@@ -29,14 +29,13 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-
-  deploy:
-    environment: 
-      name: github-pages
-      url: ${{ steps.deployement.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to Github pages
-        id: deployement
-        uses: actions/deploy-pages@v1
+deploy:
+  environment: 
+    name: github-pages
+    url: ${{ steps.deployement.outputs.page_url }}
+  runs-on: ubuntu-latest
+  needs: build
+  steps:
+    - name: Deploy to Github pages
+      id: deployement
+      uses: actions/deploy-pages@v1
